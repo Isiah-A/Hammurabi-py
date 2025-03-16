@@ -91,8 +91,22 @@ class Hammurabi:
 
 
 
-    def howManyAcresToPlant(self, population, bushels):
-        pass
+    def howManyAcresToPlant(acre, population, bushels):
+        plant = int(input("How many acres should be planted?: \n"))
+        while plant > (population * 10):
+            print("Are you sure you want to overwork your population? \n"
+                  "it didn't work out well for the last great one.")
+            plant = int(input("How many acres should be planted?: \n"))
+        while (plant * 2) > bushels:
+            print("We don't have enough grain for that amount of space. \n"
+                  "If you looked at the report you'd know that.")
+            plant = int(input("How many acres should be planted?: \n"))
+        while plant > acre:
+            print("While I appreciate your 'ambition' reality dictates \n"
+                  " that we don't have enough room for that. ")
+        else:
+            return plant
+
 
 
 
