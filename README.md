@@ -73,7 +73,8 @@ Here's what your `playGame` method needs to do each year, for up to 10 years:
 > 
 > `askHowManyAcresToBuy(price, bushels)`
 > 
-> Asks the player how many acres of land to buy, and returns that number. You must have enough grain to pay for your purchase.
+> Asks the player how many acres of land to buy, and returns that number. 
+> You must have enough grain to pay for your purchase.
 > 
 > `askHowManyAcresToSell(acresOwned)`
 > 
