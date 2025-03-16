@@ -20,7 +20,6 @@ class Hammurabi:
         feed: int = 0
         fed: int = 0
         total_starved: int = 0
-        boughtLand: int = 0
         harvest: int = 0
         bushelsPerAcre: int = 0
         ratsDestroyed: int = 0
@@ -42,24 +41,16 @@ class Hammurabi:
                 bushels = bushels -(boughtLand * landValue)
                 acre = acre + boughtLand
 
-            sell = Hammurabi.howManyAcresToSell(landValue, bushels)
+            sell = Hammurabi.howManyAcresToSell(landValue, bushels, acre)
             if sell > 0:
                 bushels = bushels + (sell * landValue)
                 acre = acre - sell
 
-
-
             feed = Hammurabi.howMuchGrainToFeedPeople(bushels)
             feed = bushels - feed
-            print(bushels)
 
-
-
-
-
-
-
-
+            plant = Hammurabi.howManyAcresToPlant(acre, population, bushels)
+            bushels = bushels - plant
 
 
     def howManyAcresToBuy(bushels, landValue):
@@ -70,10 +61,14 @@ class Hammurabi:
         else:
             return land
 
-    def howManyAcresToSell(landValue, bushels):
+    def howManyAcresToSell(landValue, bushels, acre):
         sell = int(input("How many Acres would you like to sell?: \n"))
         while sell < 0:
             print("Give me a real number great one...")
+            sell = int(input("How many Acres would you like to sell?: \n"))
+        while sell > acre:
+            print(f"We can't sell what we don't have. We only have {acre} acres of land.\n"
+                  f"A drunk scribe must have taught you arithmetic.")
             sell = int(input("How many Acres would you like to sell?: \n"))
         else:
             return sell
@@ -83,12 +78,11 @@ class Hammurabi:
         feed = int(input("How much grain would you like to feel the people?: \n "))
         while feed > bushels:
             print("Ha Ha I see your sense of humor is also great,"
-                      " now how much are we actually feeding the people? \n we have"
+                      " how much are we actually feeding the people? \n we have"
                   f" {bushels} bushels of grain left")
             feed = int(input("How much grain would you like to feel the people?: \n "))
         else:
             return feed
-
 
 
     def howManyAcresToPlant(acre, population, bushels):
@@ -103,7 +97,9 @@ class Hammurabi:
             plant = int(input("How many acres should be planted?: \n"))
         while plant > acre:
             print("While I appreciate your 'ambition' reality dictates \n"
-                  " that we don't have enough room for that. ")
+                  "that we don't have enough room for that.\n"
+                  f"We only have {acre} acres of land. ")
+            plant = int(input("How many acres should be planted?: \n"))
         else:
             return plant
 
