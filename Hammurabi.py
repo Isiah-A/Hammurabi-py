@@ -23,6 +23,7 @@ class Hammurabi:
         harvest: int = 0
         bushelsPerAcre: int = 0
         ratsDestroyed: int = 0
+        plaugeDeaths: int = 0
 
 
         for i in range(1, 11):
@@ -51,6 +52,9 @@ class Hammurabi:
 
             plant = Hammurabi.howManyAcresToPlant(acre, population, bushels)
             bushels = bushels - plant
+
+            plague = int(Hammurabi.plagueDeaths(population))
+            population = population - plague
 
 
     def howManyAcresToBuy(bushels, landValue):
@@ -102,6 +106,14 @@ class Hammurabi:
             plant = int(input("How many acres should be planted?: \n"))
         else:
             return plant
+
+
+
+    def plagueDeaths(population):
+        plague = random.randrange(1, 101)
+        if plague <= 15:
+            population = population / 2
+        return population
 
 
 
